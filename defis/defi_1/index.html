@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		
+		<title></title>
+		<meta charset="utf-8" />
+		<style>
+			h1
+				{font: Comic, sans-serif; color: white;}
+		</style>
+	</head>
+		<div style="background-color:blue;width: 100%;">
+			<h1> ALYRA Défi 1: Outil d'analyse Bitcoin </h1>
+		</div>	
+
+	<body>
+
+		<h3>Conversion Hexadécimal -> décimal</h3>
+		<input type="text" value="0" id="hexadecimal_1"><br>
+		<span type="text" id="decimal_1"></span><br>
+		<button id="convertir_1">Convertir</button>
+		
+		<script type="text/javascript">
+			function convertionHexaToDecimal(h){
+				let decimal= parseInt(h, 16)		
+				
+				return decimal
+			}
+
+			document.getElementById('convertir_1').addEventListener('click', event=> {
+				let decimal_1 = document.getElementById('hexadecimal_1').value
+				document.getElementById('decimal_1').innerHTML = convertionHexaToDecimal(decimal_1)
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion Décimal -> hexadécimal</h3>
+		<input type="text" value="0" id="decimal_2"><br>
+		<span type="text" id="hexadecimal_2"></span><br>
+		<button id="convertir_2">Convertir</button>
+
+		<script type="text/javascript">
+			function convertionDecimalToHexa(d){
+				hexa = parseInt(d).toString(16)
+				if (hexa.length % 2 == 1) {
+					hexa = '0' + hexa
+				}
+				return hexa
+			}
+
+			document.getElementById('convertir_2').addEventListener('click', event=> {
+				let decimal_2 = document.getElementById('decimal_2').value
+				document.getElementById('hexadecimal_2').innerHTML = '0x' + convertionDecimalToHexa(decimal_2)
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion hexadecimal little endian -> hexadécimal</h3>
+		<input type="text" value="0" id="hle"><br>
+		<span type="type" id="hexadecimal_3"></span><br>
+		<button id="convertir_3">Convertir</button>
+
+		<script type="text/javascript">
+			function convertionHexaLittleEndianToHexa(hle){
+				if (hle.substring (0, 2) == "0x")
+					hle = hle.substring (2)
+				if (hle.length %2 ==1){
+					hle = '0' +hle
+				}
+				let retour = ""
+				for (var i = 0; i < hle.length; i+=2) {
+					retour = hle[i] + hle[i+1]+ retour
+				}
+				return retour 				
+			}
+
+			document.getElementById('convertir_3').addEventListener('click', event=> {
+				let litteleendian_3 = document.getElementById('hle').value
+				
+				document.getElementById('hexadecimal_3').innerHTML = '0x' + 
+				convertionHexaLittleEndianToHexa(litteleendian_3)
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion VarInt -> Decimal</h3>
+		<input type="text" value="0" id="vit"><br>
+		<span type="type" id="decimal_4"></span><br>
+		<button id="convertir_4">Convertir</button>
+
+		<script type="text/javascript">
+			function convertionVarIntToDecimal(v){
+				if (v.substring (0, 2) == "0x"){
+					v= v.substring(2)
+				}
+				let VarInt = v.substring (0,2);
+				let resultat = ""
+				if (VarInt == "fd" ){
+					resultat = v.substring (2,6)
+					resultat = convertionHexaLittleEndianToHexa ('0x'+resultat)
+					resultat = convertionHexaToDecimal (resultat)
+
+				} else if (VarInt == "fe"){
+					resultat = v.substring (2,10)
+					resultat = convertionHexaLittleEndianToHexa ('0x'+resultat)
+					resultat = convertionHexaToDecimal (resultat)
+
+
+				} else if (VarInt == "ff"){
+					resultat = v.substring (2,18)
+					resultat = convertionHexaLittleEndianToHexa ('0x'+resultat)
+					resultat = convertionHexaToDecimal (resultat)
+
+
+				} else {
+					resultat = convertionHexaLittleEndianToHexa ('0x'+v)
+					resultat = convertionHexaToDecimal (resultat)
+				}	
+				return resultat			
+			}
+
+			document.getElementById('convertir_4').addEventListener('click', event=> {
+				let VarInt_4 = document.getElementById('vit').value
+				
+				document.getElementById('decimal_4').innerHTML =  convertionVarIntToDecimal(VarInt_4)
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion Champ Bits -> Cible correspondante</h3>
+		<input type="text" value="0" id="champBits"><br>
+		<span type="type" id="cible"></span><br>
+		<button id="convertir_5">Convertir</button>
+
+		<script type="text/javascript">
+
+			function BitsFieldToTarget(champBits){
+				return parseInt(champBits.substring(4,champBits.length)+("00".repeat(parseInt(champBits.substring(2,4),16)-3)),16);
+			}
+
+			document.getElementById('convertir_5').addEventListener('click', event=> {
+				let champBits = document.getElementById('champBits').value
+				
+				document.getElementById('cible').innerHTML =  BitsFieldToTarget(champBits)
+			
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion Cibe -> Difficulte</h3>
+		<input type="text" value="0" id="Cible_2"><br>
+		<span type="type" id="Difficulte"></span><br>
+		<button id="convertir_6">Convertir</button>
+
+		<script type="text/javascript">
+
+			function TargetToDifficulty(Cible_2){
+				let ciblemax = 2.7 * Math.pow(10,67);	
+				return ciblemax/ Cible_2;
+			}
+
+			document.getElementById('convertir_6').addEventListener('click', event=> {
+				let Cible_2 = document.getElementById('Cible_2').value
+				
+				document.getElementById('Difficulte').innerHTML =  TargetToDifficulty(Cible_2)
+			
+			})
+
+		</script>
+
+		<hr>
+
+		<h3>Conversion Script en hexadécimal -> affiche les op codes correspondants</h3>
+		<input type="text" value="0" id="Script"><br>
+		<span type="type" id="HexValue"></span><br>
+		<button id="convertir_7">Convertir</button>
+
+		<script type="text/javascript">
+
+			function ScriptHexaToOpcode(Script){
+			}
+
+			document.getElementById('convertir_7').addEventListener('click', event=> {
+				let Script = document.getElementById('Script').value
+				
+				document.getElementById('HexValue').innerHTML =  ScriptHexaToOpcode(Script)
+			
+			})
+
+		</script>
+
+				</script>
+
+		<hr>
+
+		<h3>Conversion time</h3>
+		<input type="text" value="0" id="UNIX_timestamp"><br>
+		<span type="type" id="time"></span><br>
+		<button id="convertir_8">Convertir</button>
+
+		<script type="text/javascript">
+
+			function UNIX_timestampHexaToOpcode(UNIX_timestamp){
+		var a = new Date(UNIX_timestamp * 1000);
+	  	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	  	var year = a.getFullYear();
+	  	var month = months[a.getMonth()];
+	  	var date = a.getDate();
+	  	var hour = a.getHours();
+	  	var min = a.getMinutes();
+	  	var sec = a.getSeconds();
+	  	var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+	  	return time;
+		}
+
+			document.getElementById('convertir_8').addEventListener('click', event=> {
+				let UNIX_timestamp = document.getElementById('UNIX_timestamp').value
+				
+				document.getElementById('time').innerHTML =  UNIX_timestampHexaToOpcode(UNIX_timestamp)
+			
+			})
+
+		</script>
+
+		//
+￼
+020000000001010000000000000000000000000000000000000000000000000000000000000000ffffffff0502cb000101ffffffff02005ed0b2000000002321029738a23a1bc55d333a623d21d476a2abd8b8b315dff001d20c18713e36c227f4ac0000000000000000266a24aa21a9ed432b5934fd1bb5c513fe7f4ca352158fbda41441367e37b64f9af50109aa27610120000000000000000000000000000000000000000000000000000000000000000000000000
+
+composition d'un bloc:
+- En-tête:
+	- Version 
+	- Hash du bloc précedent
+	- Hash Merkel
+	- TimeTamp
+	- Cible 
+	- Nonce 
+- Txn _Count: 
+- Txns (transaction sérialisés y compris le coinbase)
+
+		<hr>
+
+		<h3>Decoder un bloc</h3>
+		<textarea style="height: 200px; width: 100%" type="text" value="" id="bloc"></textarea><br>
+		<pre style="height: 50px; width: 200px;" type="type" id="time"></pre><br>
+		<button id="decoder_1">Décoder</button>
+
+		<script type="text/javascript">
+
+			function DecoderBloc(bloc){
+		
+		}
+
+			document.getElementById('decoder_1').addEventListener('click', event=> {
+				let decoder_1 = document.getElementById('decoder_1').value
+				
+				document.getElementById('bloc').innerHTML =  DecoderBloc(decoder_1)
+			
+			})
+
+		</script>
+	</body>
+</html>
