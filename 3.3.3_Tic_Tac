@@ -1,0 +1,38 @@
+pragma solidity ^0.5.3;
+contract Pulsation {
+
+  uint public Battement; 
+  string private Message; 
+
+  constructor(string memory message) public {
+    Message = message;
+  }  
+
+  function ajouterBattement() public returns (string memory message) {
+      Battement++; 
+      return Message;  
+  }
+  
+  contract Pendule is Pulsation("Tic") {
+    string [2] public TacTic;
+    Pulsation internal Tac; 
+    uint8 internal timeForTic; 
+      
+
+    function ajouterTac(Pulsation t)public{
+      Tac = t;
+    }
+
+    function provoquerDesPulsations() public {
+      if(timeForTic == 1) {
+        TacTic[timeForTic] = ajouterBattement(); 
+        timeForTic = 0;
+      }
+      else {
+        TacTic[timeForTic] = Tac.ajouterBattement();
+        timeForTic = 1
+      }
+    }
+  }
+
+}
