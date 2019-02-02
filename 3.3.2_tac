@@ -1,0 +1,23 @@
+pragma solidity ^0.5.3;
+contract Pulsation {
+
+  uint public _battement; 
+  string private _message; 
+
+  constructor(string memory message) public {
+    _message = message;
+  }  
+
+  function ajouterBattement() public returns (string memory message) {
+      _battement++;  
+  }
+  
+  contract Pendule is Pulsation {
+    Pulsation pulse; 
+
+    function provoquerDesPulsations() public {
+      pulse.ajouterBattement(); 
+    }
+  }
+
+}
