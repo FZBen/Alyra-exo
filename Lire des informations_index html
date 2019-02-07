@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+
+	<head>
+		
+		<title>Première DApp</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width-device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<style>
+			h1
+				{font: Comic, sans-serif; color: white;}
+		</style>
+	</head>
+		<div style="background-color:blue;width: 100%;">
+			<h1> Ma première DApp </h1>
+		</div>	
+
+	<body>
+		<h1>Titre de la premmière DApp</h1>
+
+		<button onclick="createMetaMaskDapp()">Connect to MetaMask</button> 
+		<!-- This exposes the library as a global variable: ethers -->
+
+		<script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8"
+        charset="utf-8"
+        type="text/javascript">
+
+		</script>
+		<script src="application.js"
+		charset= "utf-8"
+		type= "text/javascript">
+			
+		</script>
+
+		<!--<script type="text/javascript">
+			}
+
+			document.getElementById('maCredibilite').addEventListener('click', event=> {
+				let maCredibilite = document.getElementById('maCredibilite').value
+				document.getElementById('maCredibilite').innerHTML = contratCredibilite.cred(dapp.monAddress);
+			})
+
+		</script>-->
+	</body>
+</html>
