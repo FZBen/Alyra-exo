@@ -89,16 +89,24 @@ async function createMetaMaskDapp() {
 	//console.log(dapp); 
 
 	let contratCredibilite = new ethers.Contract( nameAddress, abi, dapp.provider);
+	//console.log(dapp.address)
 	// "nomAddress" = address dapp cours; abi = abi dapp cours
 	let maCredibilite = await contratCredibilite.cred(dapp.address);
 	// "monAddress" = mon adresse MetaMask qui a servi à l'envoi du devoir. 
 
+	console.log("Crédibilité: "+maCredibilite.toString());
+
 	const blockNumber = await provider.getBlockNumber(); 
-	console.log("Numéro du bloc: ",blockNumber); 
+	console.log("Numéro du bloc: "+blockNumber);
+	document.getElementById('blockNumber').innerHTML = blockNumber;
+
 	const balance  = await provider.getBalance(dapp.address); 
-	console.log("Balance: ",(balance).toString());
+	console.log("Balance: "+(balance).toString());
+	document.getElementById('balance').innerHTML = balance.toString();
+
 	const gasPrice = await provider.getGasPrice(); 
-	console.log("Gas Price: ",(gasPrice).toString());  
+	console.log("Gas Price: "+(gasPrice).toString()); 
+	document.getElementById('gasPrice').innerHTML = gasPrice.toString(); 
 
 	} catch(err) {
 		console.error(err); 
