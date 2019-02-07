@@ -11,7 +11,7 @@ contract Credibilite {
   
   // fonction de hachage au format bytes32: 
 	function produireHash(string memory devoirs) public pure returns(bytes32 devoirs_hash) {
-		return keccak256(abi.encodePacked(devoirs));
+		return keccak256(bytes(devoirs));
 	}
 
 	function transfer(address destinataire, uint256 valeur) public {
