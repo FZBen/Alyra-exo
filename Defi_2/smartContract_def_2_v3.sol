@@ -31,7 +31,7 @@ contract placeDeMarche {
        }
        return false;
    }
-   struct Utilisateur
+   struct Utilisateur // très compliqué pour moi d'aborder le struct sans l'avoir vu en cours ;(!!
 	{
 		address _address;
 		string _name;
@@ -46,7 +46,7 @@ contract placeDeMarche {
        reputation[utilisateur] = 1;
    }
    modifier pasBanni() {
-		require(false == estBanni(msg.sender), "You are blacklisted");
+		require(false == estBanni(msg.sender), "Vous êtes banni de cette plateforme.");
 		_;
 	}
 
@@ -69,10 +69,6 @@ contract placeDeMarche {
 		_register(_entreprise[msg.sender], name);
 	}
    
-    mapping (address => utilisateur) public _illustrateurs;
-	mapping (address => utilisateur) public _entreprises;
-	address[] private _bannis;
-    
     enum Etat {OUVERTE, ENCOURS, CLOTUREE}
     
     struct Demande {
@@ -84,7 +80,7 @@ contract placeDeMarche {
 		uint _reputationMin;
 		bytes32 _demandeHash;
 		address[] _candidats;
-		//address _taker;
+		address _postulant;
 		uint _delaiAcceptation_seconds;
 		uint _delaiAttente;
 		uint _tempsDeReponse;
@@ -105,7 +101,7 @@ contract placeDeMarche {
 	
 	event DemandeAjoutee(string _titre, address _demandeur, bytes32 _demandeHash);
 	event OffreDeposee(string nom, address candidat, bytes32 _demandeHash);
-	event OffreAcceptee(address hire, bytes32 _demandeHash);
+	event OffreAcceptee(address admis, bytes32 _demandeHash);
 	event OffreRejetee(bytes32 _demandeHash);
 	event DemandeCloturee(string reponseUrlHash, bytes32 _demandeHash);
 
@@ -119,12 +115,7 @@ contract placeDeMarche {
 		return MAX_UINT256;
 	}
 	
-	function ajouterDemande(
-	string memory _titre, 
-	string memory _description, 
-	uint _reputationMin, 
-	uint _delaiAcceptation_seconds) 
-	payable entreprise {
+	function ajouterDemande(string memory _titre, string memory _description, uint _reputationMin, uint _delaiAcceptation_seconds) payable entreprise {
 	    
 	    require (_reputation == reputationMin, 'Votre reputation doit être au minimum de 1 pour effectuer cette demande.'); 
 		require(msg.sender == demandeur, 'Vous devez être inscrit sur la plateforme pour pouvoir effectuer cette action.'); 
@@ -210,5 +201,5 @@ contract placeDeMarche {
 		_postulant._reputation += 1; 
 		emit OffreAcceptee(reponseUrlHash); 
 	}
-		
+		//....
 }
