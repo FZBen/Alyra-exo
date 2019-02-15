@@ -1,0 +1,39 @@
+- lancer le deamon IPFS dans une console et laisser tourner: 
+C:\Users\FATIMA>ipfs init
+
+C:\Users\FATIMA>cd C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs daemon
+
+- Publier le site sur IPFS:
+Dans une nouvelle console: 
+C:\Users\FATIMA>cd C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs add -r site-ipfs/
+
+Résultat: 
+250.63 KiB / ? [----------------------------------=------------------------------------] added QmUtqB3ZAYEN7ur8yXaZr6a8fPXrBsVTBp7AXn72GQaNER site-ipfs/asset/hair.jpg
+ 251.13 KiB / 251.13 KiB [=======================================================] 100.00%added Qmcri1SxabqNkVBChmHDDawKdqdU5iJTrE61YeLmhZKWgC site-ipfs/index.html
+ 251.13 KiB / 251.13 KiB [=======================================================] 100.00%added QmZnggjryeugX5DQc4dUhPt5FjM8oeim4QoZXtdNSAML1N site-ipfs/asset
+ 251.13 KiB / 251.13 KiB [=======================================================] 100.00%added QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad site-ipfs
+ 251.13 KiB / 251.13 KiB [=======================================================] 100.00%
+
+	- Afficher le site en local: (localhost:8080/ipfs/hash du site/)
+
+http://localhost:8080/ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad/
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs pin add -r /ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs name publish QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad
+
+Published to QmcjuVxFnTLcVf4WohTAzK9BKnag8YKMHTb778bjD2nHCo: /ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad
+
+C:\Users\FATIMA\Documents\ALYRA\Alyra_exos\administration_noeuds\IPFS>ipfs name resolve QmcjuVxFnTLcVf4WohTAzK9BKnag8YKMHTb778bjD2nHCo
+/ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad
+
+	- Afficher le site sur ipfs.io ou cloudflare-ipfs
+
+https://ipfs.io/ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad/
+https://cloudflare-ipfs.com/ipfs/QmPi4BCkgVdcHoidaxriwhrknyhFHazrpyEpiT1xKWB1ad/
