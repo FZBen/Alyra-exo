@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+
+
+  <head>
+    
+    <title>Pin_IPFS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"></script>
+	<script type="text/javascript"></script>
+
+	<style>h1{font: Comic, sans-serif; color: white;}</style>
+		
+  </head>
+
+	<body>
+		<div>
+			
+			<div style="background-color:blue;width: 100%;">
+      		<h1> EPINGLER UN HASH IPFS </h1></div>
+			
+			<div>
+				<h2>Télécharger un fichier pour produir son hash</h2>
+				<p><input type="file" id="file_contents"></p>
+
+			</div>
+
+			<h3>Ou</h3>
+
+			<div>
+				<h2>Saisir directement un hash</h2>
+				<p><input type="text" id="file_hash"></p>
+			</div>
+
+			<h2>Epingler le hash</h2>
+			<p><button onclick="pin()">Epingler</button></p>
+			
+		</div>
+
+
+		<script src="main.js" type="text/javascript"></script>
+		
+	</body>
+
+</html>
