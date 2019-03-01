@@ -308,7 +308,7 @@ if (action == 0)
  }
 
  /**
-  * @dev Internal function to set the token URI for a given token
+  * @dev Internal function to set the token URI for a given token 
   * Reverts if the token ID does not exist
   * @param tokenId uint256 ID of the token to set its URI
   * @param uri string URI to assign
