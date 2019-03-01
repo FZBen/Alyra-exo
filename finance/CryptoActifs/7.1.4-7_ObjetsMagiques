@@ -131,13 +131,13 @@ contract objetsMagiques is Ownable //, ERC721
     mapping (uint256 => string) private _mapObjet;
     mapping (uint256 => string) private _mapModel;
     mapping(address => uint256[]) private _ownedTokens;
-    // Mapping from token ID to index of the owner tokens list
+    
     mapping(uint256 => uint256) private _ownedTokensIndex;
-    // Array with all token ids, used for enumeration
+    
     uint256[] private _allTokens;
-    // Mapping from token id to position in the allTokens array
+
     mapping(uint256 => uint256) private _allTokensIndex;
-    // Optional mapping for token URIs
+   
     mapping(uint256 => string) private _tokenURIs;
     
     string private _name;
@@ -205,7 +205,7 @@ if (action == 0)
    address owner = _tokenOwner[tokenId];
    return owner != address(0);
  }
- //function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
+
  function transferFrom(address _from, address _to, uint256 _tokenId) external payable {
    require(_from==ownerOf(_tokenId));
    require(_to != address(0));
