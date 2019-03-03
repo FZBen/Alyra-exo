@@ -38,7 +38,7 @@ src =  curl  'https://www.bitmex.com/api/v1/orderBook/L2?symbol=XBT&depth=5'| js
       "price" : 3802
    },
    {
-      "side" : "Buy",
+      "side" : "Buy",  
       "symbol" : "XBTUSD",
       "price" : 3801.5,
       "id" : 8799619850,
