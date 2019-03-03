@@ -1,0 +1,141 @@
+ordre = 
+{ bitmix 
+src =  curl  'https://www.bitmex.com/api/v1/orderBook/L2?symbol=XBT&depth=5'| json_pp
+[
+   {
+      "id" : 8799619600,
+      "size" : 479820,
+      "symbol" : "XBTUSD",
+      "side" : "Sell",
+      "price" : 3804
+   },
+   {
+      "size" : 76150,
+      "id" : 8799619650,
+      "price" : 3803.5,
+      "symbol" : "XBTUSD",
+      "side" : "Sell"
+   },
+   {
+      "price" : 3803,
+      "symbol" : "XBTUSD",
+      "side" : "Sell",
+      "size" : 225371,
+      "id" : 8799619700
+   },
+   {
+      "price" : 3802.5,
+      "symbol" : "XBTUSD",
+      "side" : "Sell",
+      "size" : 203128,
+      "id" : 8799619750
+   },
+   {
+      "id" : 8799619800,
+      "size" : 480020,
+      "symbol" : "XBTUSD",
+      "side" : "Sell",
+      "price" : 3802
+   },
+   {
+      "side" : "Buy",
+      "symbol" : "XBTUSD",
+      "price" : 3801.5,
+      "id" : 8799619850,
+      "size" : 2965216
+   },
+   {
+      "id" : 8799619900,
+      "size" : 161394,
+      "symbol" : "XBTUSD",
+      "side" : "Buy",
+      "price" : 3801
+   },
+   {
+      "price" : 3800.5,
+      "side" : "Buy",
+      "symbol" : "XBTUSD",
+      "size" : 420504,
+      "id" : 8799619950
+   },
+   {
+      "size" : 392247,
+      "id" : 8799620000,
+      "price" : 3800,
+      "symbol" : "XBTUSD",
+      "side" : "Buy"
+   },
+   {
+      "price" : 3799.5,
+      "side" : "Buy",
+      "symbol" : "XBTUSD",
+      "size" : 49940,
+      "id" : 8799620050
+   }
+]} 
+
+{ src=curl 'https://api.bitfinex.com/v1/book/btcusd?limit_bids=5&limit_asks=5' |jq
+
+
+  "bids": [
+    {
+      "price": "3899.5",
+      "amount": "2.71094458",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3899.4",
+      "amount": "0.2",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3899.2",
+      "amount": "0.91946323",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3899.1",
+      "amount": "1.2",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3899",
+      "amount": "4.13652",
+      "timestamp": "1551385568.0"
+    }
+  ],
+  "asks": [
+    {
+      "price": "3899.6",
+      "amount": "0.0582381",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3900",
+      "amount": "0.05236812",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3900.2",
+      "amount": "2.69013871",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3900.3",
+      "amount": "5.34885179",
+      "timestamp": "1551385568.0"
+    },
+    {
+      "price": "3900.9",
+      "amount": "0.81162192",
+      "timestamp": "1551385568.0"
+    }
+  ]
+}
+
+let [] vals; 
+for (a in ordre) {
+ ordrePriceUnitaire = (a.price/a.size);  
+ vals.push(ordrePriceUnitaire);  
+ consoleLog ordrePriceUnitaire; 
+}
