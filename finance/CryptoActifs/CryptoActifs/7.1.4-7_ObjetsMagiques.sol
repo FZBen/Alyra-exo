@@ -37,7 +37,7 @@ interface ERC721 /* is ERC165 */ {
 	///  about them do throw.
 	/// @param _tokenId The identifier for an NFT
 	/// @return The address of the owner of the NFT
-	function ownerOf(uint256 _tokenId) external view returns (address);
+	function ownerOf(uint256 _tokenId) external view returns (address); 
 
 	/// @notice Transfers the ownership of an NFT from one address to another address
 	/// @dev Throws unless `msg.sender` is the current owner, an authorized
